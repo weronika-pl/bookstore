@@ -1,0 +1,37 @@
+.header {
+    grid-template-rows: 100px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    justify-content: stretch;
+}
+
+.logo {
+    justify-self: start;
+}
+
+.img {
+    margin: 0;
+}
+
+.callToActions {
+    justify-self: end;
+}
+
+ul, li {
+    margin: 0;
+    padding: 10px;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    font-size: 1.8rem;
+    line-height: 1;
+    color: rgba(0, 34, 68);
+    text-decoration: none;
+    text-transform: uppercase;
+}
