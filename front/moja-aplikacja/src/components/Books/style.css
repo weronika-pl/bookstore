@@ -1,0 +1,93 @@
+@media (min-width: 900px) {
+    .list {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media (min-width: 1400px) {
+    .list {
+        grid-template-columns: repeat(3, 1fr)
+    }
+}
+
+.list {
+    display: grid;
+    max-width: 1450px;
+    place-items: center;
+    place-content: space-evenly;
+    background-color: #eaeceb;
+    grid-gap: 1rem;
+    padding: 0;
+    margin-top: 14px;
+}
+
+.box {
+    display: grid;
+    background-color: white;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    max-height: 180px;
+    width: 90%;
+    margin: 10px;
+    place-items: center;
+}
+
+.book-cover {
+    max-height: 160px;
+    max-width: 135px;
+    margin: 10px;
+    grid-column: 1;
+    grid-row: 1/4;
+}
+
+.title {
+    color: #373433;
+    font-weight: bold;
+    grid-column: 2/4;
+    grid-row: 1/2;
+    justify-self: start;
+}
+
+.author {
+    color: #b7bbbd;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    justify-self: start;
+    margin: 0;
+    align-self: start;
+}
+
+.price {
+    color: #373433;
+    font-weight: bold;
+    grid-column: 3/4;
+    grid-row: 2/3;
+    justify-self: center;
+    align-self: start;
+    font-size: 200%;
+    margin: 0%
+}
+
+.pages {
+    color: #b7bbbd;
+    grid-column: 2/3;
+    grid-row: 3/4;
+    justify-self: start;
+    align-self: start;
+    margin: 0;
+}
+
+button {
+    grid-column: 3/4;
+    grid-row: 3/4;
+    justify-self: end;
+    align-self: start;
+    margin: 5%;
+	color: white;
+	background-color: #002245;
+    text-align: center;
+    box-shadow: none;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 3.5rem / 100%
+}

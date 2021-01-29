@@ -2,9 +2,12 @@
     grid-template-rows: 100px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     align-items: center;
     justify-content: stretch;
+    background-color: #002245;
+    width: 100%;
+    max-width: 1440px;
 }
 
 .logo {
@@ -15,23 +18,64 @@
     margin: 0;
 }
 
-.callToActions {
-    justify-self: end;
-}
-
-ul, li {
-    margin: 0;
-    padding: 10px;
+.menu {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    align-items: center;
+    justify-items: end;
+    padding: 0;
 }
 
 li {
     list-style-type: none;
 }
 
-a {
-    font-size: 1.8rem;
-    line-height: 1;
-    color: rgba(0, 34, 68);
-    text-decoration: none;
-    text-transform: uppercase;
+i {
+    color: white;
+}
+
+.cart {
+    color: #002245;
+}
+
+.search {
+    color: #002245;
+}
+
+.search-bar {
+    grid-column: 2/3;
+    align-self: center;
+    justify-self: end;
+    cursor: pointer;
+}
+
+a:visited {
+    color: white;
+}
+
+.search-hidden {
+    visibility: hidden;
+}
+  
+.search-active {
+    visibility: visible;
+    grid-column: 1/2;
+    place-self: center;
+    height: 28px;
+    font-weight: 400;
+    font-size: 16px;
+    padding-left: 7px;
+}  
+
+.basket {
+    grid-column: 3/4;
+    align-self: center;
+    justify-self: end;
+}
+
+.quantity {
+    font-size: 25px;
+    color: white;
+    grid-column: 4/5;
+    justify-self: start;
 }
