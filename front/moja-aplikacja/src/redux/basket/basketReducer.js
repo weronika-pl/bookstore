@@ -1,4 +1,4 @@
-import { handleAddToCart, handleRemoveFromCart } from "./basketUtils";
+import { handleAddToCart, handleRemoveFromCart, handleReduceBook } from "./basketUtils";
 
 const INITIAL_STATE = {
     shoppingList: []
@@ -17,12 +17,20 @@ const INITIAL_STATE = {
       case 'REMOVE_BOOK':
         return {
             ...state,
-            shopppingList: handleRemoveFromCart({
+            shoppingList: handleRemoveFromCart({
                 list: state.shoppingList,
                 book: action.payload
             })
         }
-        default:
+      case 'REDUCE_QTY':
+        return {
+          ...state,
+          shoppingList: handleReduceBook({
+            list: state.shoppingList,
+            book: action.payload
+          })
+        }
+      default:
         return state
     }
   }

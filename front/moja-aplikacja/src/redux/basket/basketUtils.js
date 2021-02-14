@@ -1,56 +1,47 @@
+export const existingBook = ({ list, book }) => {
+    return list.find(item => item.id === book.id)
+};
+
 export const handleAddToCart = ({ list, book }) => {
-    const isBookAlreadyInBasket = ({ list, book }) => {
-        return list.includes(book)
-    }
-    if (list.length > 0){
-        if(isBookAlreadyInBasket({ list, book })) {
-            return list.map(item => 
-                item.id === book.id
-                ? {
-                    ...item,
-                    quantity: item.quantity++
-                } : item
-            )
-        } else {
-            return [
-                ...list,
-                {
-                    ...book,
-                    quantity: 1
-                }
-            ]
+    const isBookAlreadyInBasket = existingBook({ list, book });
+    if(isBookAlreadyInBasket) {
+        return list.map(item => 
+            item.id === book.id
+            ? {
+                ...item,
+                quantity: item.quantity + 1
+            } : item
+        )
+    } 
+    return [
+        ...list,
+        {
+            ...book,
+            quantity: 1
         }
-    } else {
-        return [
-            ...list,
-            {
-                ...book,
-                quantity: 1
-            }
-        ]
-    }
+    ]
 }
 
-export const handleRemoveFromCart = (list, book) => {
+export const handleRemoveFromCart = ({ list, book }) => {
     return list.filter(item => item.id !== book.id)
 }
 
-export const handleReduceBook = (list, book) => {
-    const existingBook = list.find(item =>
-        item.id === book.id
-    );
-    
-    if (existingBook.quantity === 1) {
-    return list.filter(
-        item => item.id !== existingBook.id);
+export const handleReduceBook = ({ list, book }) => {
+    const actualBook = list.find(item => item.id === book.id);
+    console.log(actualBook);
+
+    if (actualBook.quantity === 1) {
+        return list.filter(
+            item => item.id !== actualBook.id
+        );
     }
 
     return list.map(item =>
-    item.id === existingBook.id 
+    item.id === actualBook.id 
     ?
     {
         ...item,
-        quantity: item.quantity--
+        quantity: item.quantity - 1
     } : item
     )
 }

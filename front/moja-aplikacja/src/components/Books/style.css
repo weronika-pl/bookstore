@@ -68,6 +68,13 @@
     margin: 0%
 }
 
+@media (max-width: 500px) {
+    .price {
+        font-size: 150%;
+        align-self: center;
+    }
+}
+
 .pages {
     color: #b7bbbd;
     grid-column: 2/3;
@@ -77,17 +84,65 @@
     margin: 0;
 }
 
+@media (max-width: 500px) {
+    .pages {
+        align-self: center;
+    }
+}
+
 button {
     grid-column: 3/4;
     grid-row: 3/4;
-    justify-self: end;
+    justify-self: center;
     align-self: start;
     margin: 5%;
 	color: white;
 	background-color: #002245;
     text-align: center;
     box-shadow: none;
+    border: none;
     cursor: pointer;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 120px;
+    height: 30px;
+}
+
+@media (max-width: 500px) {
+    button.add-to-cart {
+        width: 80px;
+        font-size: 10px;
+    }
+}
+
+.add-to-cart {
+    transition: all 0.2s linear 0s;
+}
+
+.add-to-cart::before {
+    content: "\f07a";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 100%;
+    height: 100%;
     text-align: center;
-    border-radius: 3.5rem / 100%
+    transform: scale(0,1);
+    transition: all 0.2s linear 0s;
+}
+
+.add-to-cart:hover {
+    text-indent: -9999px;
+}
+
+.add-to-cart:hover::before {
+    transform: scale(1,1);
+    text-indent: 0;
 }
