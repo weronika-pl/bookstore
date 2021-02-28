@@ -12,6 +12,7 @@ const BooksList = () => {
   useEffect(() => { console.log('called'); dispatch(getAllBooks()) }, []);
   
   const booksList = useSelector(state => state.books.books);
+  const filteredBooksList = useSelector(state => state.books.filteredBooks)
 
   const handleShoppingCart = book => dispatch(addToShoppingCart(book));
 
@@ -22,7 +23,9 @@ const BooksList = () => {
     }
   }
 
-  const renderedBooksList = booksList.map(book => {
+  const actualList = filteredBooksList.length ? filteredBooksList : booksList
+
+  const renderedBooksList = actualList.map(book => {
     return <li className="box" key={book.id}>
       <img className="book-cover" aria-label="book-cover" src={book.cover_url}></img>
       <p className="title">

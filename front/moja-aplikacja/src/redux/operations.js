@@ -15,6 +15,6 @@ const fetchBooks = async () => {
 
 export const getAllBooks = () => 
     async (dispatch) => {
-        const books = await fetchBooks()
-        books.map(book => dispatch(fetchingBooks(book)))
+        const books = await fetchBooks();
+        dispatch(fetchingBooks(books))
     }

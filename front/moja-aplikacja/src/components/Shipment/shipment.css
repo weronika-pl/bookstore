@@ -1,0 +1,137 @@
+.order-form {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 50%;
+    background-color: #eaeceb;
+    color: #373433;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: 40px 10px 40px 10px;
+}
+
+.group { 
+    position:relative; 
+    margin-bottom: 45px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input {
+    font-size:18px;
+    padding:10px 0px 10px 0px;
+    display:block;
+    width:100%;
+    border:none;
+    border-bottom:1px solid #373433;
+    background-color: transparent !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input:focus { 
+    outline:none;
+}
+
+label {
+    color:#373433; 
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:10px;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
+
+input:focus ~ label, input:valid ~ label {
+    top:-20px;
+    font-size:14px;
+    color:#002245;
+}
+
+.bar { 
+    position:relative; 
+    display:block; 
+    width:100%; 
+}
+
+.bar:before, .bar:after {
+    content:'';
+    height:2px; 
+    width:0;
+    bottom:1px; 
+    position:absolute;
+    background:#002245; 
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
+
+.bar:before {
+    left:50%;
+}
+
+.bar:after {
+    right:50%; 
+}
+
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width:50%;
+}
+
+.highlight {
+    position:absolute;
+    height:60%; 
+    width:300px; 
+    top:25%; 
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+}
+  
+input:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+}
+
+@-webkit-keyframes inputHighlighter {
+      from { background:#002245; }
+    to 	{ width:0; background:transparent; }
+}
+
+@-moz-keyframes inputHighlighter {
+      from { background:#002245; }
+    to 	{ width:0; background:transparent; }
+}
+
+@keyframes inputHighlighter {
+      from { background:#002245; }
+    to 	{ width:0; background:transparent; }
+}
+
+.error {
+    border-bottom-color: #900;
+}
+
+.error-msg-hidden {
+    visibility: hidden;
+    width: 0px;
+}
+
+.error-msg-active {
+    visibility: visible;
+    display: block;
+    margin: 5px auto;
+    color: #900;
+    font-size: 14px;
+}
+
+.err::before, .err::after {
+    background: #900;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import orderProgress from "./orderProcess";
 import { addToShoppingCart, removeBook, reduceQty } from "../../redux/basket/basketActions";
@@ -82,6 +83,20 @@ export const BasketList = list => {
                 </div>
                 )
             })}
+            <div className="total-cost">
+                <span className="total-cost-text">Wartość do zapłaty:</span>
+                <span className="total-cost-number">
+                    {list.reduce((a, b) => a + (((b.price/100).toFixed(2))*b.quantity), 0)} zł
+                </span>
+                <Link to="/shipment">
+                    <button
+                        className="go-to-shipment"
+                        aria-label="go-to-shipment"
+                        type="button">
+                        DALEJ
+                    </button>
+                </Link>
+            </div>
         </div>
     </div>
     )

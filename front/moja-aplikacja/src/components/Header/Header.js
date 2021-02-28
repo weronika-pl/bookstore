@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import toggleSearchBar from "../../redux/header/headerAction";
 import { handleQty } from "../../redux/basket/basketUtils"
 import './styles.css'
 import logo from '../../assets/Księgarnia.png'
+import { searchingBooks } from '../../redux/books/booksActions';
 
 
 const Header = () => {
@@ -14,6 +15,7 @@ const Header = () => {
 
     const numOfBooksInCart = useSelector(state => handleQty(state.basket.shoppingList));
 
+    const onSearch = searchName => dispatch(searchingBooks(searchName));
     const onToggleSearchBar = () => dispatch(toggleSearchBar());
 
     const onToggleSearchBarKeyDown = e => {
@@ -40,6 +42,7 @@ const Header = () => {
                     placeholder='Znajdź w księgarni'
                     className={search ? 'search-active' : 'search-hidden'}
                     tabIndex="2"
+                    onChange={e => onSearch(e.target.value)}
                     />
                 </li>
                 <li>
