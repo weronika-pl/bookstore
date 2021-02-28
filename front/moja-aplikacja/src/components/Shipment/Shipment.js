@@ -1,26 +1,22 @@
 import React from "react";
 import orderProgress from "./orderProcess";
-import TextInput from "./TextInput";
+import { useSelector } from "react-redux";
+import SelectingFormValues from "./Form";
 import "./shipment.css";
 import "../Basket/orderProcessStyle.css";
 
 const Shipment = () => {
+
+    const shoppingList = useSelector(state => state.basket.shoppingList);
+    const order = shoppingList.map(item => {
+        return { id: item.id, quantity: item.quantity }
+    })
+
     return (
         <div className="main">
             {orderProgress()}
             <div className="form-container">
-                <form className="order-form" autocomplete="off" method="POST">
-                    <TextInput title="Imię" name="first-name"/>
-                    <TextInput title="Nazwisko" name="last-name"/>
-                    <TextInput title="Miejscowość" name="city"/>
-                    <TextInput title="Kod pocztowy" name="zip-code"/>
-                    <button
-                        className="go-to-shipment"
-                        aria-label="go-to-shipment"
-                        type="button">
-                        ZAMAWIAM I PŁACĘ
-                    </button>
-                </form>
+                <SelectingFormValues order={order}/>
             </div>
         </div>
     )
