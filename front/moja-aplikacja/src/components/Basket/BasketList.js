@@ -7,7 +7,7 @@ export const BasketList = list => {
     
     const dispatch = useDispatch();
 
-    const incrementing = (e, item) => {
+    const incrementing = (item, e) => {
         const key = e.which || e.keyCode || 0;
         if (key === 13) {
             dispatch(addToShoppingCart(item));
@@ -33,6 +33,8 @@ export const BasketList = list => {
         {orderProgress()}
         <div className="basket-list">
             <div className="column-labels">
+                {// label raczej powinien byc powiazany z inputem
+                }
                 <label className="cover-label">Książka</label>
                 <label className="book-title-label">Tytuł książki</label>
                 <label className="qty">Ilość</label>
@@ -51,9 +53,14 @@ export const BasketList = list => {
                             className="fa-stack" 
                             aria-label="increment" 
                             onClick={() => dispatch(addToShoppingCart(item))}
-                            onKeyDown={e => incrementing(e, item)}
+                            // e jest domyslnie przekazywane
+                            onKeyDown={() => this.incrementing()}
                             tabIndex="5">
-                            <i className="fa fa-circle fa-stack-2x increment"></i>
+                            {//font awesome raczej jako biblioteka reactowa
+                            // https://fontawesome.com/how-to-use/on-the-web/using-with/react
+                            // wszystkie ikonki powinny miec aria-label
+                            }
+                            <i className="fa fa-circle fa-stack-2x increment" aria-label="Add one more"></i>
                             <i className="fas fa-plus fa-stack-1x"></i>
                         </span>
                         <span className="quantity-basket">{item.quantity}</span>
@@ -67,6 +74,7 @@ export const BasketList = list => {
                             <i className="fas fa-minus fa-stack-1x"></i>
                         </span>
                     </div>
+                    {/*operacje zmiennoprzecinkowe lol*/}
                     <div className="total">{((item.price/100).toFixed(2))*item.quantity} zł</div>
                     <div className="trash">
                         <span 

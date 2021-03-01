@@ -16,6 +16,7 @@ const Basket = () => {
     <div className="basket">
       {shoppingList.length 
         ? BasketList(shoppingList)
+        // to do osobnego komponentu
         : <div className="error">
             <div className="empty-cart-section">
               <img src={icon} alt="" aria-label="empty-cart-icon" />

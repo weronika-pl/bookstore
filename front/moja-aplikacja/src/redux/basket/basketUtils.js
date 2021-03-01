@@ -47,8 +47,9 @@ export const handleReduceBook = ({ list, book }) => {
 }
 
 export const handleQty = list => {
-    const sumOfBooks = list.length > 0 
-    ? list.reduce((a, b) => a + b.quantity, 0) 
-    : 0
+    const sumOfBooks = 
+    //const sumOfBooks = list.length > 0 ? 
+     list.reduce((a, b) => a + b.quantity, 0) 
+    //: 0
     return sumOfBooks
 }

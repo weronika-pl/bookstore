@@ -30,6 +30,7 @@ const Header = () => {
                     <img src={logo} width="100px" height="100px" alt="" aria-label="logo" />
                 </Link>
             </div>
+            {/*tabIndexy nie potrzebne dla input + Link*/}
             <ul className="menu">
                 <li>
                     <input
@@ -39,7 +40,7 @@ const Header = () => {
                     aria-label='search-bar'
                     placeholder='Znajdź w księgarni'
                     className={search ? 'search-active' : 'search-hidden'}
-                    tabIndex="2"
+                    tabIndex="2" 
                     />
                 </li>
                 <li>
