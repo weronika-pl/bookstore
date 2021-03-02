@@ -7,12 +7,13 @@ export const submit = async (values, dispatch, props)  => {
         zip_code: values.zipCode
     }
     console.log(JSON.stringify(ordering))
-    return new Promise(() => {
-        fetch("http://localhost:3001/api/order", {
+    return fetch("http://localhost:3001/api/order", {
             method: "post",
-            body: JSON.stringify(ordering)
+            body: JSON.stringify(ordering),
+            headers: { 
+                "Content-type": "application/json; charset=UTF-8"
+            } 
         })
         .then(res => res.json())
         .then(data => console.log(data))
-    })
 }
