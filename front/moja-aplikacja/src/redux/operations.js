@@ -1,20 +1,25 @@
-import { fetchingBooks } from "./books/booksActions";
+import { fetchingBooks, fetchBooksError } from "./books/booksActions";
+import { url } from "../assets/url";
 
-const numOfPages = [1,2];
+const numOfPages = [1, 2];
 
 const fetchBooks = async () => {
-    const response = await Promise.all(numOfPages.map(async page => {
-        const res = await fetch(`http://localhost:3001/api/book?page=${page}`);
-        return await res.json();
-    }));
-    const concatAllBooks = response.reduce(function(a,b){
-        return a.data.concat(b.data)
-    });
-    return concatAllBooks
+    try {
+        const response = await Promise.all(numOfPages.map(async page => {
+            return (await (await fetch(`${url}book?page=${page}`)).json()).data
+        }));
+        if (!response) throw (new Error('Błąd serwera'))
+        return response.reduce((a, b) => a.concat(b), [])
+    } catch (error) {
+        throw error;
+    }
 }
 
-export const getAllBooks = () => 
-    async (dispatch) => {
-        const books = await fetchBooks()
-        books.map(book => dispatch(fetchingBooks(book)))
+export const getAllBooks = () => async dispatch => {
+    try {
+        const books = await fetchBooks();
+        dispatch(fetchingBooks(books))
+    } catch (error) {
+        dispatch(fetchBooksError(error))
     }
+}

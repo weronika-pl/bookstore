@@ -1,5 +1,11 @@
+import { updateList } from "./booksUtils"
+
 const INITIAL_STATE = {
-  books: []
+  books: [],
+  filteredBooks: [],
+  isError: false,
+  errorMessage: '',
+  errorCode: -1
 }
 
 const booksReducer = (state = INITIAL_STATE, action) => {
@@ -7,7 +13,22 @@ const booksReducer = (state = INITIAL_STATE, action) => {
     case 'SET_BOOKS':
       return {
         ...state, 
-        books: [...new Set([...state.books, action.payload])]
+        books: action.payload
+      }
+    case 'SEARCH_BOOKS':
+      return {
+        ...state,
+        filteredBooks: updateList({
+          searchName: action.payload,
+          books: state.books
+        })
+      }
+    case 'SET_BOOKS_ERROR':
+      return {
+        ...state,
+        isError: true,
+        errorMessage: action.payload.message,
+        errorCode: action.payload.code,
       }
     default:
       return state

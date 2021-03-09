@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import toggleSearchBar from "../../redux/header/headerAction";
 import { handleQty } from "../../redux/basket/basketUtils"
 import './styles.css'
 import logo from '../../assets/Księgarnia.png'
+import { searchingBooks } from '../../redux/books/booksActions';
 
 
 const Header = () => {
@@ -14,6 +15,7 @@ const Header = () => {
 
     const numOfBooksInCart = useSelector(state => handleQty(state.basket.shoppingList));
 
+    const onSearch = searchName => dispatch(searchingBooks(searchName));
     const onToggleSearchBar = () => dispatch(toggleSearchBar());
 
     const onToggleSearchBarKeyDown = e => {
@@ -25,7 +27,7 @@ const Header = () => {
 
     return (
         <nav className="header"> 
-            <div className="logo" tabIndex="1">
+            <div className="logo" tabIndex="0">
                 <Link to='/'>
                     <img src={logo} width="100px" height="100px" alt="" aria-label="logo" />
                 </Link>
@@ -36,21 +38,21 @@ const Header = () => {
                     type='text'
                     id='search'
                     name='search'
-                    aria-label='search-bar'
+                    aria-label='Znajdź w księgarni'
                     placeholder='Znajdź w księgarni'
                     className={search ? 'search-active' : 'search-hidden'}
-                    tabIndex="2"
+                    onChange={e => onSearch(e.target.value)}
                     />
                 </li>
                 <li>
-                    <span className="fa-stack fa-2x" aria-label="search" onClick={onToggleSearchBar} onKeyDown={onToggleSearchBarKeyDown} tabIndex="3">
+                    <span className="fa-stack fa-2x" aria-label="Wyszukaj" onClick={onToggleSearchBar} onKeyDown={onToggleSearchBarKeyDown} tabIndex="0">
                         <i className="fa fa-circle fa-stack-2x"></i>
                         <i className="fas fa-search fa-stack-1x search"></i>
                     </span>
                 </li>
                 <li>
-                    <Link to='/basket' tabIndex="4">
-                        <span className="fa-stack fa-2x" aria-label="basket">
+                    <Link to='/basket'>
+                        <span className="fa-stack fa-2x" aria-label="Przejdź do koszyka">
                             <i className="fa fa-circle fa-stack-2x"></i>
                             <i className="fa fa-shopping-cart fa-stack-1x cart"></i>
                         </span>
