@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Field, formValueSelector, reduxForm } from "redux-form";
 import { submit } from "./submit";
@@ -33,7 +34,7 @@ const validate = values => {
 const renderField = ({ input, label, id, type, meta: { touched, error } }) => {
     return (
         <div className="group">
-            <input {...input} type={type}/>
+            <input {...input} type={type} className="input-form"/>
             <span className="highlight" id={"hl-" + id}/>
             <span className="bar" id={"bar-" + id}/>
             <label className="form-order">{label}</label>
@@ -56,17 +57,19 @@ const OrderForm = ({handleSubmit, order}) => {
                     pattern="[0-9]{2}\-[0-9]{3}"
                     label="Kod pocztowy"
                 />
-            <button
-                className="go-to-payment"
-                aria-label="go-to-payment"
-                type="submit">
-                ZAMAWIAM I PŁACĘ
-            </button>
+            <Link to="/confirmation">
+                <button
+                    className="go-to-payment"
+                    aria-label="Zamawiam i płacę"
+                    type="submit">
+                    ZAMAWIAM I PŁACĘ
+                </button>
+            </Link>
         </form>
     )
 }
 
-const FormOrder = reduxForm({form: 'order', validate})(OrderForm);
+const FormOrder = reduxForm({form: 'order', validate, destroyOnUnmount: false})(OrderForm);
 const selector = formValueSelector('order');
 const SelectingFormValues = connect(state => {
     const { firstName, lastName, city, zipCode } = selector(state, 'firstName', 'lastName', 'city', 'zipCode');

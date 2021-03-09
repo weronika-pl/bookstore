@@ -190,8 +190,29 @@ label {
     .total {
         grid-column: 3/4;
         grid-row: 3/4;
-        font-size: 25px;
+        font-size: 20px;
         justify-self: end;
+    }
+
+    .total-cost {
+        grid-template-columns: 2fr 1.5fr 2fr;
+        width: 98%;
+    }
+
+    .total-cost-text {
+        grid-column: 1/2;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .total-cost-number {
+        grid-column: 2/3;
+        font-size: 20px;
+    }
+
+    .go-to-shipment {
+        grid-column: 3/4;
+        width: 100px;
     }
 
     .trash {

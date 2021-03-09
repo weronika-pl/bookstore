@@ -19,7 +19,7 @@
     margin-right: auto;
 }
 
-input {
+.input-form {
     font-size:18px;
     padding:10px 0px 10px 0px;
     display:block;
@@ -31,7 +31,7 @@ input {
     margin-right: auto;
 }
 
-input:focus { 
+.input-form:focus { 
     outline:none;
 }
 
@@ -48,7 +48,7 @@ label.form-order {
     -webkit-transition:0.2s ease all;
 }
 
-input:focus ~ label, input:valid ~ label {
+.input-form:focus ~ label, .input-form:valid ~ label {
     top:-20px;
     font-size:14px;
     color:#002245;
@@ -80,7 +80,7 @@ input:focus ~ label, input:valid ~ label {
     right:50%; 
 }
 
-input:focus ~ .bar:before, input:focus ~ .bar:after {
+.input-form:focus ~ .bar:before, .input-form:focus ~ .bar:after {
     width:50%;
 }
 
@@ -94,7 +94,7 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
     opacity:0.5;
 }
   
-input:focus ~ .highlight {
+.input-form:focus ~ .highlight {
     -webkit-animation:inputHighlighter 0.3s ease;
     -moz-animation:inputHighlighter 0.3s ease;
     animation:inputHighlighter 0.3s ease;
@@ -180,4 +180,10 @@ input:focus ~ .highlight {
 .go-to-payment:hover::before {
     transform: scale(1,1);
     text-indent: 0;
+}
+
+@media (max-width: 500px) {
+    .form-container {
+        margin-top: 30px;
+    }
 }

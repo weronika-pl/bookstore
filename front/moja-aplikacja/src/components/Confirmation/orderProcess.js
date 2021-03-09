@@ -18,10 +18,10 @@ const orderProgress = () => {
                 </li>
                 <li>
                     <span className="fa-stack fa-2x order" aria-label="Potwierdzenie etap ostatni">
-                        <i className="fa fa-circle fa-stack-2x progress"></i>
+                        <i className="fa fa-circle fa-stack-2x progress-active"></i>
                         <i className="fas fa-clipboard-check fa-stack-1x icon"></i>
                     </span><br />
-                    <p className="name">Potwierdzenie</p>
+                    <p className="name-active">Potwierdzenie</p>
                 </li>
             </ul>
         </div> 

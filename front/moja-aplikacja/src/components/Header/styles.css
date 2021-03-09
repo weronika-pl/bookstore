@@ -36,6 +36,7 @@ li {
     list-style-type: none;
     display: flex;
     align-self: center;
+    position: relative;
 }
 
 i {
@@ -78,6 +79,9 @@ a:visited {
 @media (max-width: 500px) {
     .search-active {
         width: 120px;
+        position: absolute;
+        top: 10px;
+        left: -115px;
     }
 }
 

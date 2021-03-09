@@ -1,8 +1,9 @@
-import orderProgress from "../../components/Basket/orderProcess"
-
-const sendOrder = order => ({
-    type: 'SEND_ORDER',
-    payload: order
-})
+export const fetchSubmitError = e => ({
+    type: 'SET_SUBMIT_ERROR',
+    payload: {
+      message: e.message,
+      code: e.code || 500,
+    }
+});
   
-export default sendOrder
+
