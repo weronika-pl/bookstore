@@ -15,3 +15,7 @@ export const fetchBooksError = e => ({
     code: e.code || 500,
   }
 });
+
+export const fetchBooksLoading = () => ({
+  type: 'SET_BOOKS_LOADING',
+})

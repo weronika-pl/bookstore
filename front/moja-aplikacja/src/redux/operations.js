@@ -1,4 +1,4 @@
-import { fetchingBooks, fetchBooksError } from "./books/booksActions";
+import { fetchingBooks, fetchBooksError, fetchBooksLoading } from "./books/booksActions";
 import { url } from "../assets/url";
 
 const numOfPages = [1, 2];
@@ -17,8 +17,9 @@ const fetchBooks = async () => {
 
 export const getAllBooks = () => async dispatch => {
     try {
+        dispatch(fetchBooksLoading());
         const books = await fetchBooks();
-        dispatch(fetchingBooks(books))
+        setTimeout(() => { dispatch(fetchingBooks(books))}, 3000);
     } catch (error) {
         dispatch(fetchBooksError(error))
     }

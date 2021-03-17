@@ -18,6 +18,7 @@ const BooksList = () => {
   const errorMessage = useSelector(state => state.books.errorMessage);
   const isError = useSelector(state => state.books.isError);
   const errorCode = useSelector(state => state.books.errorCode);
+  const isLoading = useSelector(state => state.books.isLoading)
 
   const handleShoppingCart = book => dispatch(addToShoppingCart(book));
 
@@ -30,6 +31,10 @@ const BooksList = () => {
 
   const actualList = filteredBooksList.length ? filteredBooksList : booksList
 
+  if (isLoading) {
+    // osobny komponent na loader
+    return <h1>Loading...</h1>
+  }
   return (
     <ul className="list">
       {isError
