@@ -19,3 +19,13 @@ export const fetchBooksError = e => ({
 export const fetchBooksLoading = () => ({
   type: 'SET_BOOKS_LOADING',
 })
+
+export const getBooksByPage = (page) => ({
+  type: 'GET_BOOKS_BY_PAGE',
+  payload: page,
+});
+
+export const setCurrentPage = (pageNumber) => ({
+  type: 'SET_CURRENT_PAGE',
+  payload: pageNumber,
+})

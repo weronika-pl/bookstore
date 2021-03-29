@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   errorMessage: '',
   errorCode: -1,
   isLoading: false,
+  currentPage: 1,
 }
 
 const booksReducer = (state = INITIAL_STATE, action) => {
@@ -44,6 +45,26 @@ const booksReducer = (state = INITIAL_STATE, action) => {
         errorCode: -1,
         isLoading: true,
       }
+    case 'GET_BOOKS_BY_PAGE': {
+      return {
+        ...state,
+        isError: false,
+        errorMessage: '',
+        errorCoe: -1,
+        isLoading: true,
+        currentPage: action.payload,
+      }
+    }
+    case 'SET_CURRENT_PAGE': {
+      return {
+        ...state,
+        isError: false,
+        errorMessage: '',
+        errorCoe: -1,
+        isLoading: true,
+        currentPage: action.payload,
+      }
+    }
     default:
       return state
   }
