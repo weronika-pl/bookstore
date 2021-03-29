@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Pagination({ setCurrentPage }) {
+export default function Pagination() {
   return (
-    <div>
-      <button onClick={() => setCurrentPage(1)}>1</button>
-      <button onClick={() => setCurrentPage(2)}>2</button>
+    <div className="pagination">
+      <Link to="/books/1" className="page">1</Link>
+      <Link to="/books/2" className="page">2</Link>
     </div>
   );
 }

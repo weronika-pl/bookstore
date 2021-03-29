@@ -1,27 +1,26 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {  getBooksPagination } from "../../redux/operations";
+import { getBooksPagination } from "../../redux/operations";
 import { addToShoppingCart } from "../../redux/basket/basketActions";
-import { setCurrentPage } from "../../redux/books/booksActions"
 import "./style.css";
 import { renderedBooksList } from "./renderedBooksList";
 import ErrorComponent from "./Error";
 import Pagination from "./Pagination";
 
 const BooksList = () => {
-const dispatch = useDispatch();
-
-
-
+  const dispatch = useDispatch();
+  const { page } = useParams();
   const booksList = useSelector((state) => state.books.books);
   const filteredBooksList = useSelector((state) => state.books.filteredBooks);
   const errorMessage = useSelector((state) => state.books.errorMessage);
   const isError = useSelector((state) => state.books.isError);
   const errorCode = useSelector((state) => state.books.errorCode);
   const isLoading = useSelector((state) => state.books.isLoading);
-  const currentPage = useSelector((state) => state.books.currentPage)
 
-  useEffect(() => { dispatch(getBooksPagination(currentPage)); }, [currentPage])
+  useEffect(() => {
+    dispatch(getBooksPagination(page));
+  }, [page]);
 
   const handleShoppingCart = (book) => dispatch(addToShoppingCart(book));
 
@@ -44,8 +43,11 @@ const dispatch = useDispatch();
         ErrorComponent(errorCode, errorMessage)
       ) : (
         <>
-        {renderedBooksList(actualList, handleShoppingCart, addingBook)}
-        <Pagination currentPage={currentPage} setCurrentPage={(number) => dispatch(setCurrentPage(number))}/> </>
+          {renderedBooksList(actualList, handleShoppingCart, addingBook)}
+          <Pagination
+            currentPage={page}
+          />{" "}
+        </>
       )}
     </ul>
   );

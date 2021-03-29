@@ -15,6 +15,7 @@ const App = () => {
         <Header />
         <Switch>
           <Route exact path='/' component={BooksList}></Route>
+          <Route exact path='/books/:page' component={BooksList}></Route>
           <Route path='/basket' component={Basket}></Route>
           <Route path='/shipment' component={Shipment}></Route>
           <Route path='/confirmation' component={ConfirmationPage}></Route>
