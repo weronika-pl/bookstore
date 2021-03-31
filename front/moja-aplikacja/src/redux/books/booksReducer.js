@@ -5,7 +5,9 @@ const INITIAL_STATE = {
   filteredBooks: [],
   isError: false,
   errorMessage: '',
-  errorCode: -1
+  errorCode: -1,
+  isLoading: false,
+  currentPage: 1,
 }
 
 const booksReducer = (state = INITIAL_STATE, action) => {
@@ -13,7 +15,11 @@ const booksReducer = (state = INITIAL_STATE, action) => {
     case 'SET_BOOKS':
       return {
         ...state, 
-        books: action.payload
+        books: action.payload,
+        isError: false,
+        errorMessage: '',
+        errorCode: -1,
+        isLoading: false,
       }
     case 'SEARCH_BOOKS':
       return {
@@ -29,7 +35,36 @@ const booksReducer = (state = INITIAL_STATE, action) => {
         isError: true,
         errorMessage: action.payload.message,
         errorCode: action.payload.code,
+        isLoading: false,
       }
+    case 'SET_BOOKS_LOADING': 
+      return {
+        ...state,
+        isError: false,
+        errorMessage: '',
+        errorCode: -1,
+        isLoading: true,
+      }
+    case 'GET_BOOKS_BY_PAGE': {
+      return {
+        ...state,
+        isError: false,
+        errorMessage: '',
+        errorCoe: -1,
+        isLoading: true,
+        currentPage: action.payload,
+      }
+    }
+    case 'SET_CURRENT_PAGE': {
+      return {
+        ...state,
+        isError: false,
+        errorMessage: '',
+        errorCoe: -1,
+        isLoading: true,
+        currentPage: action.payload,
+      }
+    }
     default:
       return state
   }

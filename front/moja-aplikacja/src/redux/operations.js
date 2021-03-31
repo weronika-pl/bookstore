@@ -1,4 +1,4 @@
-import { fetchingBooks, fetchBooksError } from "./books/booksActions";
+import { fetchingBooks, fetchBooksError, fetchBooksLoading, getBooksByPage } from "./books/booksActions";
 import { url } from "../assets/url";
 
 const numOfPages = [1, 2];
@@ -15,11 +15,28 @@ const fetchBooks = async () => {
     }
 }
 
+const fetchOnePageOfBooks = async (page) => {
+    const response = await (await fetch(`${url}book?page=${page}`)).json();
+    return response.data;
+}
+
 export const getAllBooks = () => async dispatch => {
     try {
+        dispatch(fetchBooksLoading());
         const books = await fetchBooks();
-        dispatch(fetchingBooks(books))
+        setTimeout(() => { dispatch(fetchingBooks(books))}, 3000);
     } catch (error) {
         dispatch(fetchBooksError(error))
+    }
+}
+
+export const getBooksPagination = (page) => async dispatch => {
+    try {
+        dispatch(fetchBooksLoading());
+        const data = await fetchOnePageOfBooks(page);
+        setTimeout(() => {dispatch(fetchingBooks(data))})
+    }
+    catch (err) {
+        dispatch(fetchBooksError(err))
     }
 }
