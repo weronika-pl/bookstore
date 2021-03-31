@@ -143,6 +143,16 @@ h2 {
     text-indent: 0;
 }
 
+.pagination {
+    display: flex;
+    margin: 0 auto;
+}
+
+.page {
+    padding: 10px;
+    background-color: grey;
+}
+
 @media (max-width: 500px) {
     body {
         font-size: 11px;
